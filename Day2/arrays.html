@@ -1,0 +1,19 @@
+<html>
+    <script>
+        const numbers = [3,1,6,3,7,-1]; //map = mapdoesnt modify the original but create other
+        const newArray = numbers.map(function(element){
+            return element + 2;
+        });
+        numbers.forEach(function(element){ //foreach dont return any value
+            console.log(element);
+        });
+        //console.log(numbers)
+        //console.log(newArray) // reduce = reduce to values to a extent value
+
+        const sum = numbers.reduce(function(previousValue, element, currentindex){
+            console.log(previousValue, element, currentindex);
+            return previousValue + element;
+        });
+        console.log(sum);
+    </script> 
+</html>

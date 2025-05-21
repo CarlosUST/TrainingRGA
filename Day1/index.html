@@ -1,0 +1,39 @@
+<html>
+    <script>
+        const a = 1; //reference -> constant or variable
+        // a = 2;
+        var b = 5;
+        const numbers = [1,2,3, 11,5, -1];
+        //numbers.sort(function(a,b){
+          //  return a-b; // to change the order we change b -a and viceversa
+        //});
+        const newArray = numbers.map(function(a){ //callback function
+            if (a%2 ==0){
+                return a+10;
+            }
+            else
+            return a;
+        })
+        //return a%2 == 0 ? a+10: a; a if in one line
+        console.log(numbers);
+        console.log(newArray);
+       // numbers.push(4); //modification
+       //const result = numbers.find(function(params){
+        //console.log(params);
+        //return params == 1; //return boolean
+       //})
+       // console.log(result); //,find() only acept functions
+       function showTextClicked(event){ //event handler
+        console.log(event.target.name);
+        return 120; // never return any value from a function, any returned value is lost
+       }
+    </script>
+    <body>
+        <div type="text" onclick="showTextClicked(event)" name="div11"> This is div1
+        <input type="text" onclick="showTextClicked(event)" name="text1">
+        <button onclick="showTextClicked(event)" name="button1">Button1</button>
+        <button onclick="showTextClicked(event)" name="button2">Button2</button>
+    </body>
+</html>
+
+

@@ -1,0 +1,49 @@
+<html>
+    <script>
+       
+    </script>
+    <body>
+        <input type="text"  name="text1"><br><br>
+        <input type="text"  name="text2"><br><br> 
+        <form>
+    <label>
+      <input type="radio" name="gender" value="male">
+      Male
+    </label>
+
+    <label>
+      <input type="radio" name="gender" value="female"> 
+      Female
+    </label><br><br>
+  </form>
+
+ <select name="cars" id="cars" onchange="showValueLabel()">
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="mercedes">Mercedes</option>
+  <option value="audi">Audi</option>
+</select>
+<label id="valueCar">You have selected: Nothing</label>
+<br>
+<br>
+<br>
+<script>
+    const dropdown = document.getElementById("cars");
+
+    dropdown.addEventListener("change", function() {
+      const seleccion = dropdown.value;
+      console.log("Has seleccionado:", seleccion);
+    });
+
+    function showValueLabel() {
+      const dropdown = document.getElementById("cars");
+      const labell = document.getElementById("valueCar");
+      const selectedValue = dropdown.value;
+
+      labell.textContent = "You have selected: " + (selectedValue);
+    }
+
+</script>
+    </body>
+</html>
+

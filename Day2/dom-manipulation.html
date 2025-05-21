@@ -1,0 +1,61 @@
+<html>
+    <script>
+        function sum(){
+            const num01 = parseInt(document.getElementById("number1").value);
+            const num02 = parseInt(document.getElementById("number2").value);
+
+            const sum1 = num01 + num02;
+            document.getElementById("result").textContent = "Result is: " + sum1
+        }
+
+        function radioSelected(){
+            const radio11 = document.getElementById('radio1');
+            const radio22 = document.getElementById('radio2');
+            const result = document.getElementById('resulto');
+            if(radio11.checked){
+                result.textContent = 'You have selected: ' + radio11.value;
+
+            } else if (radio22.checked){
+                result.textContent = 'You have selected: ' + radio22.value;
+                
+            }
+            
+        }
+
+        function addNewField(){
+
+            const htmlElement = '<input type="radio"  name="gender" value="male">';
+            const element3 = document.getElementById("newElement");
+            element3.innerHTML += htmlElement
+        }
+
+
+
+        function add(){
+        var local = localStorage.getItem('sum');
+        const allText = document.querySelectorAll('input[id^="number"]');
+        var numberResult = parseInt(local == null ? '0' : local);
+        allText.forEach(element => {
+            numberResult += getNumber(element.getAttribute("id"));
+        });
+        localStorage.setItem('sum',numberResult);
+        const divElement = document.getElementById('SumResult');
+        divElement.textContent = numberResult;
+    }
+    </script>
+    <body>
+        
+        <input type="text" id="number1">
+        <input type="text" id="number2">
+        <button onclick="sum()">Add</button><br>
+        <div id="result">Result is: </div><br><br><br>
+
+        <input type="radio" id="radio1" name="gender" value="Male" onclick="radioSelected()">Male
+        <input type="radio" id="radio2" name="gender" value="Female" onclick="radioSelected()">Female
+        <br><label id="resulto">You have selected: </label><br><br><br>
+
+        <label id="newElement"></label><br><br>
+        <button onclick="addNewField()">add New Rario</button>
+    </body>
+</html>
+
