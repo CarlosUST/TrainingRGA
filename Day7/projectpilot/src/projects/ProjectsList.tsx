@@ -1,11 +1,23 @@
 import React from 'react'
 import { Project } from './Project';
+import ProjectCard from './ProjectCard';
 
 interface ProjectsListProps {
     projects: Project[];
 }
 
 function ProjectsList({projects}: ProjectsListProps) {
+  //return <pre>{JSON.stringify(projects, null, ' ')}</pre>
+  const items = projects.map(project => (
+    <div key={project.id} className='cols-sm'>
+      <ProjectCard project={project}/>
+    </div>
+  ));
+  return <div className='row'>{items}</div>
+  
+}
+
+/* function ProjectsList({projects}: ProjectsListProps) {
   //return <pre>{JSON.stringify(projects, null, ' ')}</pre>
   return (
     <div className="row">
@@ -25,6 +37,8 @@ function ProjectsList({projects}: ProjectsListProps) {
       ))}
     </div>
   );
-}
+
+  
+}*/
 
 export default ProjectsList
