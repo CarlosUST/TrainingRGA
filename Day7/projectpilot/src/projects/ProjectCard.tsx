@@ -5,15 +5,18 @@ function formatDescription(description: string): string {
   return description.substring(0, 60) + '...';
 }
 
+/*Child component*/
 interface ProjectCardProps {
   project: Project;
+  onEdit: (project: Project) => void;
 }
 
 
 function ProjectCard(props: ProjectCardProps) {
-  const { project } = props;
+  const { project, onEdit } = props;
   const handleEditClick = (projectBeingEdited: Project) => {
-    console.log(projectBeingEdited);
+    onEdit(projectBeingEdited);
+    /*console.log(projectBeingEdited);*/
   };
   return (
     <div className="card">
@@ -25,7 +28,7 @@ function ProjectCard(props: ProjectCardProps) {
         <p>{formatDescription(project.description)}</p>
         <p>Budget : {project.budget.toLocaleString()}</p>
         <button className="bordered" onClick={() => {handleEditClick(project);
-          
+
         }}>
           <span className="icon-edit " />
           Edit
