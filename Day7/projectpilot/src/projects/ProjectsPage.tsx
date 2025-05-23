@@ -1,12 +1,16 @@
 
 import { MOCK_PROJECTS } from './MockProject';
+import type { Project } from './Project';
 import ProjectsList from './ProjectsList';
 
 function ProjectsPage() {
+  const saveProject = (project: Project) => {
+    console.log('Saving Project: ', project)
+  };
   return (
     <>
       <h1>Projects</h1>
-      <ProjectsList projects={MOCK_PROJECTS}/>
+      <ProjectsList onSave={saveProject} projects={MOCK_PROJECTS}/>
     </>
   );
 }
