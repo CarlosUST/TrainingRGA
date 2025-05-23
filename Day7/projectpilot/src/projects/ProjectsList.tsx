@@ -7,7 +7,35 @@ interface ProjectsListProps {
     projects: Project[];
 }
 
-/* Parent Component*/
+function ProjectsList({ projects }: ProjectsListProps) {
+  const [projectBeingEdited, setProjectBeingEdited] = useState({});
+
+  const handleEdit = (project: Project) => {
+    setProjectBeingEdited(project);
+  };
+
+  const cancelEditing = () => {
+    setProjectBeingEdited({});
+  };
+
+  return (
+    <div className="row">
+      {projects.map((project) => (
+        <div key={project.id} className="cols-sm">
+          {project === projectBeingEdited ? (
+            <ProjectForm
+              onCancel={cancelEditing}
+            />
+          ) : (
+            <ProjectCard project={project} onEdit={handleEdit} />
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* Parent Component
 function ProjectsList({projects}: ProjectsListProps) {
   //return <pre>{JSON.stringify(projects, null, ' ')}</pre>
   const [projectBeingEdited, setProjectBeingEdited] = useState({});
