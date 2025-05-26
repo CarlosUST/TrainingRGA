@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { projectAPI } from './projectAPI';
 import { MOCK_PROJECTS } from './MockProject';
-import type { Project } from './Project';
+import { Project } from './Project';
 import ProjectsList from './ProjectsList';
 
 
@@ -43,10 +43,23 @@ function ProjectsPage() {
 
 const saveProject = (project: Project) => {
    //console.log('Saving project: ', project);
-    let updatedProjects = projects.map((p: Project) => {
-      return p.id === project.id ? project : p;
-    });
-    setProjects(updatedProjects);
+    //let updatedProjects = projects.map((p: Project) => {
+      //return p.id === project.id ? project : p;
+    //});
+    //setProjects(updatedProjects);
+    projectAPI
+     .put(project)
+     .then((updatedProject) => {
+       let updatedProjects = projects.map((p: Project) => {
+         return p.id === project.id ? new Project(updatedProject) : p;
+       });
+       setProjects(updatedProjects);
+     })
+     .catch((e) => {
+        if (e instanceof Error) {
+         setError(e.message);
+        }
+     });
 };
 
 return (
