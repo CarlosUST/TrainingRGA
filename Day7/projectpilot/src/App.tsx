@@ -4,6 +4,7 @@ import Hello from "./hello/HelloFunction";
 import HelloState from "./hello/HelloState";
 import ProjectsPage from "./projects/ProjectsPage";
 import HomePage from "./home/HomePage";
+import NewProject from "./newProjects/NewProject";
 
 function App() {
   /*return (
@@ -48,11 +49,15 @@ function App() {
         <NavLink to="/projects" className="button rounded">
           Projects
         </NavLink>
+        <NavLink to="/newProjects" className="button rounded">
+          New Project
+        </NavLink>
       </header>
       <div className="container">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/newProjects" element={<NewProject />} />
         </Routes>
       </div>
     </BrowserRouter>
