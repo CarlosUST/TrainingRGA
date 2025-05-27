@@ -1,14 +1,21 @@
 import React from 'react'
 import { Project } from '../projects/Project';
 import ProjectForm from '../projects/ProjectForm';
+import { projectAPI } from '../projects/projectAPI';
 
 function NewProject() {
-  const handleSave = (project: Project) => {
-    console.log('Project Saved: ', project);
+  const handleSave = async (project: Project) => {
+    try {
+      const savedProject = await projectAPI.post(project);
+      console.log('Project Saved: ', savedProject);
+    }catch (error){
+      console.error('Error Saving project: ', error)
+    }
+    
   };
 
   const handleCancel = () => {
-    console.log('Projec canceled');
+    console.log('Project canceled');
   };
 
   const initialProject = new Project({
