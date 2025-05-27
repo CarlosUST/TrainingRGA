@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Project } from '../projects/Project';
 import ProjectForm from '../projects/ProjectForm';
 import { projectAPI } from '../projects/projectAPI';
 
 function NewProject() {
+
+  const initialProject = new Project({
+    id: 0,
+    name: '',
+    description: '',
+    budget: 0,
+    isActive: false,
+  });
+
   const handleSave = async (project: Project) => {
     try {
       const savedProject = await projectAPI.post(project);
@@ -18,13 +27,7 @@ function NewProject() {
     console.log('Project canceled');
   };
 
-  const initialProject = new Project({
-    id: 0,
-    name: '',
-    description: '',
-    budget: 0,
-    isActive: false,
-  });
+  
 
   return (
     <div>

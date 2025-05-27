@@ -98,6 +98,19 @@ const projectAPI = {
           'There was an error creating the project. Please try again.'
         );
       });
+  },
+
+  delete(id: number) {
+    return fetch(`${url}/${id}`, {
+      method: 'DELETE',
+    })
+      .then(checkStatus)
+      .catch((error: TypeError) => {
+        console.log('log client error ' + error);
+        throw new Error(
+          'There was an error deleting the project. Please try again.'
+        );
+      });
   }
 };
 

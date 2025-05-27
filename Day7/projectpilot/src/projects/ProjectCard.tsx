@@ -32,7 +32,12 @@ function ProjectCard(props: ProjectCardProps) {
         }}>
           <span className="icon-edit " />
           Edit
+
         </button>
+        <button className='bordered'>
+          <span className="icon-delete" />
+          Delete
+          </button>
       </section>
     </div>
   );
