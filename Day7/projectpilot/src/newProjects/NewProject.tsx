@@ -8,7 +8,7 @@ function NewProject() {
   };
 
   const handleCancel = () => {
-    console.log('Projection canceled');
+    console.log('Projec canceled');
   };
 
   const initialProject = new Project({
