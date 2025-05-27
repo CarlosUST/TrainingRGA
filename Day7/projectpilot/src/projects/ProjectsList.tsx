@@ -6,10 +6,16 @@ import ProjectForm from './ProjectForm';
 interface ProjectsListProps {
     projects: Project[];
     onSave: (project: Project) => void;
+    onDelete: (project: Project) => void;
 }
 
-function ProjectsList({ projects, onSave }: ProjectsListProps) {
-  const [projectBeingEdited, setProjectBeingEdited] = useState({});
+function ProjectsList({ projects, onSave, onDelete }: ProjectsListProps) {
+  const [projectList, setProjectList] = useState<Project[]>(projects);
+  const [projectBeingEdited, setProjectBeingEdited] = useState<Project | {}>({});
+
+  React.useEffect(() => {
+    setProjectList(projects);
+  }, [projects]);
 
   const handleEdit = (project: Project) => {
     setProjectBeingEdited(project);
@@ -17,6 +23,13 @@ function ProjectsList({ projects, onSave }: ProjectsListProps) {
 
   const cancelEditing = () => {
     setProjectBeingEdited({});
+  };
+
+  const handleDelete = (projectToDelete: Project) => {
+    if ((projectBeingEdited as Project).id === projectToDelete.id) {
+      cancelEditing();
+    }
+    onDelete(projectToDelete);
   };
 
   return (
@@ -30,7 +43,9 @@ function ProjectsList({ projects, onSave }: ProjectsListProps) {
               onCancel={cancelEditing}
             />
           ) : (
-            <ProjectCard project={project} onEdit={handleEdit} />
+            <ProjectCard project={project} 
+                         onEdit={handleEdit} 
+                         onDelete={handleDelete}/>
           )}
         </div>
       ))}

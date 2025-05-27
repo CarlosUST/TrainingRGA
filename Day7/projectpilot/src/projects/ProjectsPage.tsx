@@ -62,6 +62,24 @@ const saveProject = (project: Project) => {
      });
 };
 
+
+ const deleteProject = async (projectToDelete: Project) => {
+    if (projectToDelete.id === undefined) {
+    setError('Project id is undefined, cannot delete.');
+    return;
+  }
+    try {
+      await projectAPI.delete(projectToDelete.id);
+      setProjects((prevProjects) =>
+        prevProjects.filter((p) => p.id !== projectToDelete.id)
+      );
+    } catch (e) {
+      if (e instanceof Error) {
+        setError(e.message);
+      }
+    }
+  }; 
+
 return (
    <>
       <h1>Projects</h1>
@@ -79,7 +97,10 @@ return (
         </div>
       )}
       
-      <ProjectsList onSave={saveProject} projects={projects} />
+      <ProjectsList 
+      onSave={saveProject} 
+      projects={projects}
+      onDelete={deleteProject} />
 
       {!loading && !error && (
         <div className="row">

@@ -969,15 +969,6 @@
       "contractSignedOn": "2015-03-31T22:18:57.328Z",
       "budget": 81317,
       "isActive": false
-    },
-    {
-      "name": "Charly",
-      "description": "MyHouse",
-      "imageUrl": "",
-      "contractSignedOn": "2025-05-27T18:16:52.128Z",
-      "budget": 25,
-      "isActive": true,
-      "id": 100
     }
   ]
 }
