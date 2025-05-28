@@ -1,7 +1,6 @@
 
 import { useState, useEffect } from 'react';
 import { projectAPI } from './projectAPI';
-import { MOCK_PROJECTS } from './MockProject';
 import { Project } from './Project';
 import ProjectsList from './ProjectsList';
 

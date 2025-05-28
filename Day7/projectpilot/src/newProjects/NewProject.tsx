@@ -15,8 +15,10 @@ function NewProject() {
 
   const handleSave = async (project: Project) => {
     try {
+      if (window.confirm(`Are you sure you want to create project "${project.name}"?`)){
       const savedProject = await projectAPI.post(project);
       console.log('Project Saved: ', savedProject);
+      }
     }catch (error){
       console.error('Error Saving project: ', error)
     }
@@ -31,7 +33,7 @@ function NewProject() {
 
   return (
     <div>
-      <h2>New Project</h2>
+      <h2>Create a new Project</h2>
     <   ProjectForm
           project={initialProject}
           onSave={handleSave}

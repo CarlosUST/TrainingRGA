@@ -54,27 +54,37 @@ function ProjectForm({
   };
 
       function validate(project: Project) {
-        let errors: any = { name: '', description: '', budget: '' };
-    if (project.name.length === 0) {
-      errors.name = 'Name is required';
-    }
-    if (project.name.length > 0 && project.name.length < 3) {
-      errors.name = 'Name needs to be at least 3 characters.';
-    }
-    if (project.description.length === 0) {
-      errors.description = 'Description is required.';
-    }
-    if (project.budget === 0) {
-      errors.budget = 'Budget must be more than $0.';
-    }
-    return errors;
+  let errors: any = { name: '', description: '', budget: '' };
+
+  if (project.name.trim().length === 0) {
+    errors.name = 'Name is required.';
+  } else if (project.name.trim().length < 3) {
+    errors.name = 'Name needs to be at least 3 characters.';
+  }
+  if (project.name.trim().length > 100) {
+    errors.name = 'Name can not be longer than 100 characters';
   }
 
+  if (project.description.trim().length === 0) {
+    errors.description = 'Description is required.';
+  } else if (project.description.trim().length > 2000){
+    errors.description = 'Description can not be longer than 2000 characters';
+  }
+
+  if (project.budget <= 0 || isNaN(project.budget)) {
+    errors.budget = 'Budget must be more than $0.';
+  }
+
+  return errors;
+}
+
   function isValid() {
+    const validationErrors = validate(project);
+  setErrors(validationErrors);
     return (
-      errors.name.length === 0 &&
-      errors.description.length === 0 &&
-      errors.budget.length === 0
+      validationErrors.name.length === 0 &&
+    validationErrors.description.length === 0 &&
+    validationErrors.budget.length === 0
     );
   }
 
